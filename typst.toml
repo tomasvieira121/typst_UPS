@@ -1,0 +1,16 @@
+[package]
+name = "ups-thesis"
+version = "1.0.0"
+compiler = "0.13.1"
+entrypoint = "src/lib.typ"
+authors = ["Universidade Politécnica de Santarém"]
+license = "MIT"
+description = "Master's thesis for Universidade Politécnica de Santarém"
+repository = ""
+categories = ["thesis", "layout"]
+keywords = ["UPS", "Universidade Politécnica de Santarém", "tese", "thesis"]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

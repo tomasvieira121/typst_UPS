@@ -1,6 +1,6 @@
 #import "/src/lib.typ" as ups
 
-#show: ips.template.with(
+#show: ups.template.with(
   // Document metadata
   title: "<DISSERTATION TITLE>",
   author: "<YOUR FULL NAME>",
@@ -69,7 +69,7 @@
 
 // Start main body with arabic numbering
 <main-content>
-#show: ips.main-content-wrapper
+#show: ups.main-content-wrapper
 
 // CHAPTERS - Include your chapter files here
 // Follow the chapter-template.typ structure

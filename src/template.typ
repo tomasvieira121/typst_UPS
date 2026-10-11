@@ -67,7 +67,7 @@
   set page(
     paper: "a4",
     margin: (
-      top: 2cm,
+      top: 3.5cm,
       bottom: 2cm,
       left: 3cm,
       right: 2cm,
@@ -78,7 +78,7 @@
 
   // Text formatting
   set text(
-    size: 12pt,
+    size: 11pt,
     lang: language,
     font: ("Arial", "Helvetica", "sans-serif"),
   )
@@ -171,7 +171,7 @@
     header: context {
       let h-logo = config.at("header-logo", default: "/src/UPSHeader.png")
       if h-logo != none {
-        image(h-logo, height: 1.2cm)
+        image(h-logo, height: 1.12cm)
       }
     },
     header-ascent: 30%,

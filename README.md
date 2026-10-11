@@ -4,6 +4,8 @@ An unofficial Master's thesis template for the Universidade Politécnica de Sant
 
 This template provides a clean and professional layout that follows UPS's thesis formatting requirements, offering a modern alternative to LaTeX templates.
 
+> 📖 **User Guide:** For complete instructions on where and how to edit each part of the template, refer to [DOC.md](DOC.md).
+
 ## Build Instructions
 
 ### Option 1: Using VS Code (Recommended)

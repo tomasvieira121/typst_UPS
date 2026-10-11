@@ -139,7 +139,6 @@
   // Figure and table formatting
   set figure(
     gap: 1em,
-    supplement: [Figure],
   )
 
   set table(

@@ -23,12 +23,10 @@ Supervised learning algorithms learn from labeled training data to make predicti
 
 Deep learning has revolutionized many areas of machine learning through the use of multi-layered neural networks.
 
-/*
 #figure(
-  image("../", width: 80%),
-  caption: [Example neural network architecture],
+  image("/src/UPS.png", width: 35%),
+  caption: [Exemplo de arquitetura de rede neural],
 ) <fig:network>
-*/
 
 == Optimization Techniques
 

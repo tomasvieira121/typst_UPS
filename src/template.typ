@@ -70,7 +70,7 @@
       top: 3.5cm,
       bottom: 2cm,
       left: 3cm,
-      right: 2cm,
+      right: 3cm,
     ),
     numbering: "1",
     number-align: top + right,

@@ -1,4 +1,4 @@
-// INVICTA THESIS TEMPLATE
+// UPS THESIS TEMPLATE
 // Main template function and document setup
 
 #import "covers.typ": make-committee-page, make-cover
@@ -6,7 +6,7 @@
 #import "utils.typ": set-config
 
 // Main template function
-#let invicta-thesis(
+#let ups-thesis(
   // Document metadata
   title: "<DISSERTATION-TITLE>",
   author: "<FULL-NAME>",
@@ -67,10 +67,10 @@
   set page(
     paper: "a4",
     margin: (
-      top: 2.5cm,
-      bottom: 2.5cm,
-      left: 4.5cm,
-      right: 3.5cm,
+      top: 2cm,
+      bottom: 2cm,
+      left: 3cm,
+      right: 2cm,
     ),
     numbering: "1",
     number-align: top + right,
@@ -86,6 +86,7 @@
   // Paragraph formatting
   set par(
     justify: true,
+    leading: 0.8em,
     first-line-indent: (amount: 1.5em, all: false),
     spacing: 1.2em,
   )

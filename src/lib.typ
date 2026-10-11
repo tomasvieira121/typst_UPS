@@ -1,15 +1,15 @@
-// INVICTA THESIS TEMPLATE for Typst
+// UPS THESIS TEMPLATE for Typst
 // Main package exports
-// João Lourenço, July 2025 (Typst version)
+// Based on Invicta Thesis by João Lourenço
 
 // Import all template modules
-#import "template.typ": invicta-thesis, main-content
+#import "template.typ": ups-thesis, main-content
 #import "covers.typ": make-cover, make-committee-page
 #import "toc.typ": make-toc
 #import "utils.typ": *
 
 // Export the main template function
-#let template = invicta-thesis
+#let template = ups-thesis
 
 // Export utility functions
 #let cover = make-cover

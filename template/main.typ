@@ -8,6 +8,7 @@
   school: "Escola Superior _______________",
   document-type: "Dissertação",
   logo: "/src/UPS.png",
+  header-logo: "/src/UPSHeader.png",
   supervisor: "<SUPERVISOR NAME>",
   second-supervisor: "<SECOND SUPERVISOR NAME>", // Optional, use none if not applicable
 

@@ -20,6 +20,7 @@
   copyright-notice: none,
   // Visual elements
   logo: none,
+  header-logo: "/src/UPSHeader.png",
   additional-front-text: none,
   // Committee information
   committee-text: none, // Put text if final version
@@ -45,6 +46,7 @@
     thesis-date: thesis-date,
     copyright-notice: copyright-notice,
     logo: logo,
+    header-logo: header-logo,
     additional-front-text: additional-front-text,
     committee-text: committee-text,
     committee-members: committee-members,
@@ -165,19 +167,12 @@
   // Set the UPS header for all subsequent pages
   set page(
     header: context {
-      grid(
-        columns: (auto, 1fr),
-        align: (left, left),
-        gutter: 10pt,
-        if config.logo != none { image(config.logo, height: 1.2cm) } else { none },
-        align(horizon)[
-          #text(size: 11pt, weight: "bold", font: ("Arial", "Helvetica", "sans-serif"))[
-            UNIVERSIDADE \ POLITÉCNICA DE SANTARÉM
-          ]
-        ]
-      )
+      let h-logo = config.at("header-logo", default: "/src/UPSHeader.png")
+      if h-logo != none {
+        image(h-logo, height: 1.2cm)
+      }
     },
-    header-ascent: 30%
+    header-ascent: 30%,
   )
 
   body

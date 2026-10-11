@@ -122,19 +122,20 @@
           // Convert number to letter (1=A, 2=B, etc.)
           let appendix_letter = str.from-unicode(65 + chapter_num - 1) // 65 is ASCII for 'A'
           block(
-            text(size: 24pt, weight: "bold", [Appendix #appendix_letter]),
+            text(size: 24pt, weight: "bold", [Appendix #appendix_letter #h(0.4cm) #it.body]),
           )
         } else {
           block(
-            text(size: 24pt, weight: "bold", [Chapter #chapter_num]),
+            text(size: 24pt, weight: "bold", [#chapter_num #h(0.4cm) #it.body]),
           )
         }
+      } else {
+        block(
+          text(size: 24pt, weight: "bold", it.body),
+        )
       }
-      v(1em)
-      block(
-        text(size: 28pt, weight: "bold", it.body),
-      )
-      v(2em)}
+      v(2em)
+    }
     
   ]
 

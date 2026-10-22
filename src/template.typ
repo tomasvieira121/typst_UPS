@@ -140,10 +140,18 @@
     
   ]
 
-  // Figure and table formatting
+   // Figure and table formatting
   set figure(
     gap: 1em,
   )
+
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.where(kind: image): set figure.caption(position: bottom)
+
+  show figure.caption: it => context [
+    #set text(size: 10pt)
+    *#it.supplement ~#it.counter.display(it.numbering)#it.separator* #it.body
+  ]
 
   set table(
     stroke: 0.5pt,

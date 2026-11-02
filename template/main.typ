@@ -87,7 +87,7 @@
 // Options: "ieee", "apa", "elsevier-vancouver", etc.
 #ups.make-bibliography("elsevier-vancouver")
 
-#set heading(numbering: "A.1", level: 1)
+#set heading(numbering: "A.1")
 #counter(heading).update(0)
 
 // Appendices

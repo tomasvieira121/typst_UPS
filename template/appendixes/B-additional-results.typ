@@ -1,6 +1,8 @@
 #import "/src/lib.typ" as ups
 
-#heading[Additional Results]  
+#show figure.where(kind: table): set text(size: 9.5pt)
+
+#heading[Additional Results]
 
 This appendix contains supplementary experimental results and analysis.
 
@@ -9,6 +11,7 @@ This appendix contains supplementary experimental results and analysis.
 #figure(
   table(
     columns: (auto, auto, auto, auto, auto),
+    align: (col, row) => if row == 0 { center + horizon } else if col > 0 { center + horizon } else { left + horizon },
     [Method], [Precision], [Recall], [F1-Score], [AUC],
     [Baseline 1], [0.842], [0.838], [0.840], [0.891],
     [Baseline 2], [0.856], [0.851], [0.853], [0.904],

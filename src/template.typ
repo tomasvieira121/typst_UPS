@@ -114,7 +114,8 @@
       v(1em)
     } else {
       pagebreak(weak: true)
-      v(6.3em)
+      let is_appendix = it.numbering == "A.1"
+      v(if is_appendix { 1.5em } else { 6.3em })
       if it.numbering != none {
         let chapter_num = counter(heading).get().first()
 
@@ -122,8 +123,9 @@
         if it.numbering == "A.1" {
           // Convert number to letter (1=A, 2=B, etc.)
           let appendix_letter = str.from-unicode(65 + chapter_num - 1) // 65 is ASCII for 'A'
+          let appendix_label = if language == "pt" { "Apêndice" } else { "Appendix" }
           block(
-            text(size: 24pt, weight: "bold", [Appendix #appendix_letter #h(0.4cm) #it.body]),
+            text(size: 24pt, weight: "bold", [#appendix_label #appendix_letter #h(0.4cm) #it.body]),
           )
         } else {
           block(
@@ -135,7 +137,7 @@
           text(size: 24pt, weight: "bold", it.body),
         )
       }
-      v(2em)
+      v(if is_appendix { 1.2em } else { 2em })
     }
     
   ]
@@ -147,6 +149,7 @@
 
   show figure.where(kind: table): set figure.caption(position: top)
   show figure.where(kind: image): set figure.caption(position: bottom)
+  show figure.where(kind: "code"): set block(breakable: true)
 
   show figure.caption: it => context [
     #set text(size: 10pt)

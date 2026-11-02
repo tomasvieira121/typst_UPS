@@ -37,13 +37,16 @@
 
 // Function to create code blocks with proper formatting
 #let code-block(code, caption: none, lang: none) = {
+  show raw: set text(size: 8pt)
+  set par(leading: 0.5em)
   figure(
     block(
-      fill: gray.lighten(95%),
-      inset: 1em,
-      radius: 3pt,
+      breakable: true,
+      fill: rgb("#f9fafb"),
+      inset: (x: 1.2em, y: 1em),
+      radius: 4pt,
       width: 100%,
-      stroke: 0.5pt + gray,
+      stroke: 0.5pt + rgb("#d0d5dd"),
       code
     ),
     caption: caption,
@@ -56,11 +59,12 @@
 #let algorithm(title, content) = {
   figure(
     block(
+      breakable: true,
       fill: gray.lighten(97%),
-      inset: 1em,
-      radius: 3pt,
+      inset: (x: 1.2em, y: 1em),
+      radius: 4pt,
       width: 100%,
-      stroke: 0.5pt + gray,
+      stroke: 0.5pt + rgb("#d0d5dd"),
       [
         #align(center)[*#title*]
         #line(length: 100%)

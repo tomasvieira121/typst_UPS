@@ -265,7 +265,7 @@ Appendix files are located in `template/appendixes/`.
 2. Open `template/main.typ`.
 3. Add the `#include` statement after the appendix heading setup:
    ```typst
-   #set heading(numbering: "A.1", level: 1)
+   #set heading(numbering: "A.1")
    #counter(heading).update(0)
 
    #include "appendixes/A-implementation-details.typ"
@@ -273,6 +273,21 @@ Appendix files are located in `template/appendixes/`.
    #include "appendixes/C-extra-data.typ"
    ```
 The template numbers appendixes with letters (Appendix A, Appendix B, Appendix C) automatically.
+
+### 8.3 Formatting Guidelines for Tables and Code in Appendixes
+When building appendixes with wide tables or extensive code snippets:
+1. **Table Font Size**: Add `#show figure.where(kind: table): set text(size: 9.5pt)` at the top of the appendix file to fit dense tabular data cleanly.
+2. **Column Proportions and Alignment**: Use fractional widths (`fr`) and cell-level alignment functions:
+   ```typst
+   table(
+     columns: (2.2fr, 1.1fr, 1.3fr, 3.8fr),
+     align: (col, row) => if row == 0 { center + horizon } else if col == 1 or col == 2 { center + horizon } else { left + horizon },
+     ...
+   )
+   ```
+3. **Long Monospaced Identifiers**: Break long identifier names across lines to prevent overflowing into adjacent cells (e.g. `[`classification.` \ `confidence`]`).
+4. **Typst Math Notation**: Use standard dot notation for decimals in math mode (e.g. `$>= 0.60$`, not LaTeX `$>= 0{,}60$`).
+5. **Multi-page Code Listings**: `#ups.code-block()` is configured with `breakable: true` and compact font sizing (`8pt`, `0.5em` leading) to flow across page breaks without clipping.
 
 ---
 

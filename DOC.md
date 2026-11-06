@@ -4,7 +4,159 @@ This document describes how to use and change the Typst template for Universidad
 
 ---
 
-## 1. Directory Structure
+## 1. Quick Start: Repository Setup and Dependencies
+
+Follow these steps to create your personal thesis repository, pull the template files, install the required dependencies, and build your document.
+
+Template repository URL: `https://github.com/tomasvieira121/typst_UPS.git`
+
+---
+
+### 1.1 Step 1: Create Your Personal Repository
+You should keep your thesis in your own personal Git repository on GitHub (or another Git host) to save your work, version control changes, and back it up safely.
+
+#### Option A: Via GitHub Web (Easiest)
+1. Sign in to your [GitHub account](https://github.com).
+2. Click **+** in the top-right corner and select **New repository**.
+3. Name your repository (e.g. `minha-dissertacao` or `my-thesis`).
+4. Set the visibility to **Private** (recommended while writing your dissertation) or **Public**.
+5. **Important:** Leave "Add a README file", ".gitignore", and "Choose a license" **unchecked** to create an empty repository.
+6. Click **Create repository** and copy your repository URL (e.g., `https://github.com/<YOUR-USERNAME>/my-thesis.git`).
+
+#### Option B: Via VS Code Source Control (GUI)
+You can create and publish your repository directly inside VS Code without using the browser:
+1. Open your thesis folder in VS Code (`File` > `Open Folder...`).
+2. Open the **Source Control** view (`Ctrl+Shift+G` on Windows/Linux or `Cmd+Shift+G` on macOS).
+3. If the folder is not yet a git repository, click **Initialize Repository**.
+4. Click the blue **"Publish to GitHub"** button (or click the `...` menu > **Branch** > **Publish Branch**).
+5. Sign in to your GitHub account if prompted by VS Code.
+6. Select **"Publish to GitHub private repository"** (recommended for your thesis) or public repository.
+7. VS Code will automatically create the repository on GitHub, configure the remote `origin`, and push your files.
+
+#### Option C: Via Git Command Line
+```bash
+# Create and initialize a local folder
+mkdir my-thesis
+cd my-thesis
+git init -b main
+```
+
+---
+
+### 1.2 Step 2: Get the Template Files
+
+You can bring the template files into your project using one of the following approaches:
+
+#### Method A: Clone the Template & Switch Remote to Your Repo (Recommended)
+This is the simplest and most foolproof method. You clone the template, rename its remote to `upstream`, and set your own repository as `origin`:
+
+```bash
+# 1. Clone the template into your project directory
+git clone https://github.com/tomasvieira121/typst_UPS.git my-thesis
+cd my-thesis
+
+# 2. Rename the template remote so you can pull future template updates
+git remote rename origin upstream
+
+# 3. Add your personal repository as 'origin'
+git remote add origin https://github.com/<YOUR-USERNAME>/my-thesis.git
+
+# 4. Push everything to your personal repository
+git push -u origin main
+```
+
+#### Method B: Pull / Merge into an Empty Repository (Git Remote + Pull)
+If you already created an empty repository locally or on GitHub:
+
+```bash
+# Inside your empty project folder (my-thesis):
+# 1. Add the template repository as a remote
+git remote add upstream https://github.com/tomasvieira121/typst_UPS.git
+
+# 2. Pull and merge the template files into your main branch
+git pull upstream main --allow-unrelated-histories
+
+# 3. Add your personal GitHub repository as origin (if not done yet)
+git remote add origin https://github.com/<YOUR-USERNAME>/my-thesis.git
+
+# 4. Push to your personal repository
+git push -u origin main
+```
+
+> [!TIP]
+> **How to sync future template updates:**
+> If the template is updated with new fixes or styles in the future, you can pull them into your thesis at any time:
+> ```bash
+> git fetch upstream
+> git merge upstream/main
+> ```
+
+---
+
+### 1.3 Step 3: Install Dependencies to Build the Document
+
+Typst does not require heavy LaTeX distributions (such as TeX Live or MiKTeX). All you need is Typst itself, which can be used in three ways:
+
+#### Option A: VS Code + Tinymist Typst Extension (Recommended)
+This option provides real-time side-by-side PDF preview as you type, autocomplete, and syntax highlighting.
+
+1. Install [Visual Studio Code](https://code.visualstudio.com/).
+2. Open the **Extensions** panel (`Ctrl+Shift+X` on Windows/Linux or `Cmd+Shift+X` on macOS).
+3. Search for **Tinymist Typst** (by *Myriad-Dreamin*) and click **Install**.
+   - *Note: Tinymist includes the Typst compiler bundled in the extension. No additional command-line tool is required.*
+4. In VS Code, open the repository folder (`File` > `Open Folder...`).
+5. Open `template/main.typ`.
+6. Click the **"Typst: Preview"** button in the top-right editor bar (or press `Ctrl+K, V`).
+7. A live preview will open next to your code. Every save automatically compiles the document to `template/main.pdf`.
+
+#### Option B: Standalone Typst CLI (Command Line)
+If you prefer compiling via terminal or running automated scripts (e.g., GitHub Actions):
+
+- **Windows**:
+  ```powershell
+  winget install --id Typst.Typst
+  # Alternatively with Scoop: scoop install typst
+  # Alternatively with Chocolatey: choco install typst
+  ```
+- **macOS**:
+  ```bash
+  brew install typst
+  ```
+- **Linux**:
+  ```bash
+  # Arch Linux:
+  sudo pacman -S typst
+  # Fedora:
+  sudo dnf install typst
+  # Via Cargo (Rust):
+  cargo install --locked typst-cli
+  ```
+- **Direct Binary Download (Any OS)**:
+  Download the latest standalone executable from [Typst GitHub Releases](https://github.com/typst/typst/releases) and place it in your system `PATH`.
+
+**Compiling with Typst CLI:**
+Run from the root directory of your project:
+```bash
+# Compile once to generate template/main.pdf:
+typst compile template/main.typ --root .
+
+# Or run in watch mode (auto-recompiles whenever you save a file):
+typst watch template/main.typ --root .
+```
+
+> [!IMPORTANT]
+> Always pass `--root .` when using `typst compile` or `typst watch`. The template uses root-relative paths (e.g. `/src/lib.typ`), which require the root flag to locate assets and libraries correctly.
+
+#### Option C: Typst Web App (No Local Installation)
+If you prefer not to install anything on your machine:
+1. Open [typst.app](https://typst.app/) and create an account.
+2. Create a new empty project.
+3. Upload the repository contents (the `src/` and `template/` folders).
+4. Open `template/main.typ` to write and export your PDF directly from your browser.
+
+---
+
+## 2. Directory Structure
 
 The repository contains two primary directories:
 - `template/`: Contains all user content, chapters, images, and references.
@@ -47,11 +199,11 @@ TemplateUPS/
 
 ---
 
-## 2. Main File: `template/main.typ`
+## 3. Main File: `template/main.typ`
 
 The file `template/main.typ` controls the full document. It sets the document metadata, controls front matter sections, and includes chapters.
 
-### 2.1 Document Metadata
+### 3.1 Document Metadata
 
 Open `template/main.typ`. Set your metadata in the `#show: ups.template.with(...)` block:
 
@@ -90,12 +242,12 @@ Open `template/main.typ`. Set your metadata in the `#show: ups.template.with(...
 
 ---
 
-## 3. How to Edit Document Sections
+## 4. How to Edit Document Sections
 
-### 3.1 Cover Page and Title Page
+### 4.1 Cover Page and Title Page
 Do not edit code in `src/covers.typ`. Set your data in `template/main.typ`. The template builds the cover page and the committee page automatically.
 
-### 3.2 Dedication
+### 4.2 Dedication
 1. Open `template/main.typ`.
 2. Find the `#ups.dedication(...)` call:
    ```typst
@@ -105,12 +257,12 @@ Do not edit code in `src/covers.typ`. Set your data in `template/main.typ`. The 
    ```
 3. If you do not want a dedication, delete or comment out this call.
 
-### 3.3 Acknowledgments
+### 4.3 Acknowledgments
 1. Open `template/prologue/acknowns.typ`.
 2. Write your acknowledgment text.
 3. Save the file.
 
-### 3.4 List of Acronyms
+### 4.4 List of Acronyms
 1. Open `template/main.typ`.
 2. Find the `#ups.acronym-list(...)` call.
 3. Add or change your acronyms in the list:
@@ -122,11 +274,11 @@ Do not edit code in `src/covers.typ`. Set your data in `template/main.typ`. The 
    ))
    ```
 
-### 3.5 Resumo and Abstract
+### 4.5 Resumo and Abstract
 - Edit `template/prologue/resumo.typ` to write the Portuguese summary and keywords.
 - Edit `template/prologue/abstract.typ` to write the English summary and keywords.
 
-### 3.6 Tables of Contents and Lists
+### 4.6 Tables of Contents and Lists
 The template calls `#ups.table-of-contents()` in `template/main.typ`.
 - The template creates the Table of Contents automatically.
 - The template creates the List of Figures if the document contains figures.
@@ -135,9 +287,9 @@ The template calls `#ups.table-of-contents()` in `template/main.typ`.
 
 ---
 
-## 4. Chapters
+## 5. Chapters
 
-### 4.1 Chapter Files
+### 5.1 Chapter Files
 The `template/chapters/` directory contains all chapters:
 - `1-introduction.typ`
 - `2-literature-review.typ`
@@ -146,7 +298,7 @@ The `template/chapters/` directory contains all chapters:
 - `5-result-and-analysis.typ`
 - `6-conclusions-and-future-work.typ`
 
-### 4.2 How to Add a New Chapter
+### 5.2 How to Add a New Chapter
 1. Copy `template/chapters/chapter-template.typ` to create a new file (example: `template/chapters/7-discussion.typ`).
 2. Open `template/main.typ`.
 3. Add the `#include` statement in the chapters area:
@@ -157,7 +309,7 @@ The `template/chapters/` directory contains all chapters:
    #include "chapters/7-discussion.typ"
    ```
 
-### 4.3 Chapter Heading Syntax
+### 5.3 Chapter Heading Syntax
 Use standard Typst headings in each chapter file:
 ```typst
 #heading(level: 1)[Chapter Title] // Or use: = Chapter Title
@@ -173,12 +325,12 @@ Write your subsection text here.
 
 ---
 
-## 5. Figures and Images
+## 6. Figures and Images
 
-### 5.1 Add an Image File
+### 6.1 Add an Image File
 Put your image files (PNG, JPG, or SVG) in the `template/figures/` directory.
 
-### 5.2 Insert a Figure
+### 6.2 Insert a Figure
 Insert a figure with the `#figure` function:
 ```typst
 #figure(
@@ -187,7 +339,7 @@ Insert a figure with the `#figure` function:
 ) <fig:architecture>
 ```
 
-### 5.3 Reference a Figure
+### 6.3 Reference a Figure
 Reference the figure label in your text:
 ```typst
 As shown in @fig:architecture, the pipeline has three stages.
@@ -195,7 +347,7 @@ As shown in @fig:architecture, the pipeline has three stages.
 
 ---
 
-## 6. Tables
+## 7. Tables
 
 Use the `#figure` function with the `table` kind:
 ```typst
@@ -217,9 +369,9 @@ The results are shown in @tab:results.
 
 ---
 
-## 7. Bibliography and Citations
+## 8. Bibliography and Citations
 
-### 7.1 Add References
+### 8.1 Add References
 1. Open `template/refs.bib`.
 2. Add your reference in standard BibTeX format:
    ```bibtex
@@ -231,7 +383,7 @@ The results are shown in @tab:results.
    }
    ```
 
-### 7.2 Cite References in Text
+### 8.2 Cite References in Text
 - To cite a reference, use `@` with the BibTeX key:
   ```typst
   Recent studies show good results @vaswani2017attention.
@@ -241,7 +393,7 @@ The results are shown in @tab:results.
   According to @vaswani2017attention[p. 15], self-attention improves results.
   ```
 
-### 7.3 Change Bibliography Style
+### 8.3 Change Bibliography Style
 Open `template/main.typ`. Set the style in the `#ups.make-bibliography(...)` call:
 ```typst
 #ups.make-bibliography("elsevier-vancouver")
@@ -255,12 +407,12 @@ Supported styles include:
 
 ---
 
-## 8. Appendixes
+## 9. Appendixes
 
-### 8.1 Location of Appendix Files
+### 9.1 Location of Appendix Files
 Appendix files are located in `template/appendixes/`.
 
-### 8.2 Add an Appendix
+### 9.2 Add an Appendix
 1. Create a new file in `template/appendixes/` (example: `C-extra-data.typ`).
 2. Open `template/main.typ`.
 3. Add the `#include` statement after the appendix heading setup:
@@ -274,7 +426,7 @@ Appendix files are located in `template/appendixes/`.
    ```
 The template numbers appendixes with letters (Appendix A, Appendix B, Appendix C) automatically.
 
-### 8.3 Formatting Guidelines for Tables and Code in Appendixes
+### 9.3 Formatting Guidelines for Tables and Code in Appendixes
 When building appendixes with wide tables or extensive code snippets:
 1. **Table Font Size**: Add `#show figure.where(kind: table): set text(size: 9.5pt)` at the top of the appendix file to fit dense tabular data cleanly.
 2. **Column Proportions and Alignment**: Use fractional widths (`fr`) and cell-level alignment functions:
@@ -291,7 +443,7 @@ When building appendixes with wide tables or extensive code snippets:
 
 ---
 
-## 9. Special Helper Functions (`#ups....`)
+## 10. Special Helper Functions (`#ups....`)
 
 The template provides custom helper functions:
 
@@ -305,7 +457,7 @@ The template provides custom helper functions:
 
 ---
 
-## 10. Modifications in the `src/` Directory
+## 11. Modifications in the `src/` Directory
 
 Do not edit files in `src/` unless you must modify the core layout:
 - `src/covers.typ`: Controls layout of the front cover and the committee page.
@@ -314,15 +466,15 @@ Do not edit files in `src/` unless you must modify the core layout:
 
 ---
 
-## 11. How to Compile the Document
+## 12. How to Compile the Document
 
-### Method 1: VS Code (Recommended)
+### 12.1 Method 1: VS Code (Recommended)
 1. Install the **Tinymist Typst** extension in VS Code.
 2. Open `template/main.typ`.
 3. Click the **Typst: Preview** button in the top right corner.
 4. The extension shows a live preview of the PDF.
 
-### Method 2: Command Line Interface (CLI)
+### 12.2 Method 2: Command Line Interface (CLI)
 Open a terminal in the root directory of the repository (`TemplateUPS`). Run the following command:
 
 ```bash

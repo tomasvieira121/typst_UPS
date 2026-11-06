@@ -4,56 +4,47 @@ An unofficial Master's thesis template for the Universidade Politécnica de Sant
 
 This template provides a clean and professional layout that follows UPS's thesis formatting requirements, offering a modern alternative to LaTeX templates.
 
-> 📖 **User Guide:** For complete instructions on where and how to edit each part of the template, refer to [DOC.md](DOC.md).
+---
 
-## Build Instructions
-
-### Option 1: Using VS Code (Recommended)
-The easiest way to write and compile this template is by using an editor extension.
-1. Install [VS Code](https://code.visualstudio.com/).
-2. Install the **Tinymist Typst** extension.
-3. Open the `template/main.typ` file.
-4. Click the "Typst: Preview" button in the top right corner to get a live, side-by-side PDF preview as you type!
-
-### Option 2: Using the Command Line
-If you prefer compiling directly from your terminal:
-1. Install the Typst compiler from the [official website](https://typst.app/) (or use `winget install typst` / `brew install typst`).
-2. Open a terminal in the root folder of this repository.
-3. Run the following command (the `--root .` is important so the compiler can find the `src/` folder):
-
-```bash
-typst compile template/main.typ --root .
-```
-4. The generated PDF will be created at `template/main.pdf`.
-
-## Example Usage
-
-```typst
-#show: template.with(
-  title: "Advanced Machine Learning Techniques for Computer Vision",
-  author: "Luís Vaz de Camões",
-  degree: "Master in Electrical and Computer Engineering",
-  supervisor: "Prof. Maria Santos",
-  second-supervisor: "Prof. Pedro Costa",
-  copyright-notice: "Luís Camões, 2025",
-  committee-text: "Approved in oral examination by the committee:",
-  committee-members: (
-    (role: "President", name: "Prof. Ana Ferreira"),
-    (role: "Referee", name: "Prof. Carlos Oliveira"),
-    (role: "Referee", name: "Prof. Luisa Rodrigues"),
-  ),
-  stage: "final",
-  language: "en",
-  on-paper: true,
-)
-```
-
-## Acknowledgments
-
-This template was created for the UPS community and is not officially endorsed by the university. The UPS logo and university branding remain property of the Universidade Politécnica de Santarém.
-
-This template is a fork and adaptation of the **Invicta Thesis Template** (a package available in the Typst Universe as `@preview/invicta-thesis`, created by João Lourenço). 
+> 📖 **In-Depth Guide & Setup:**  
+> For a comprehensive, step-by-step guide on how to create your personal repository, pull template files, install dependencies, customize chapters, and format tables/code, please refer to **[DOC.md](DOC.md)**.
 
 ---
 
-**Note**: This is an unofficial template. Always verify that your thesis meets current UPS requirements before submission. The UPS logo and UP logo used in this template are under copyright of Universidade Politécnica de Santarém, and shall not be used for non-professional purposes or by people outside of the institution without its express authorization.
+## Quick Start
+
+### 1. Using VS Code (Recommended)
+1. Install [VS Code](https://code.visualstudio.com/) and the **[Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist)** extension.
+2. Open this folder in VS Code and open `template/main.typ`.
+3. Click the **"Typst: Preview"** button in the top-right corner (or press `Ctrl+K, V`) for a live side-by-side preview.
+
+### 2. Using the Command Line
+Compile directly from your terminal (requires the [Typst CLI](https://github.com/typst/typst)):
+
+```bash
+# Compile once (generates template/main.pdf):
+typst compile template/main.typ --root .
+
+# Or auto-recompile on save:
+typst watch template/main.typ --root .
+```
+
+*Note: The `--root .` flag is required.*
+
+---
+
+## Documentation
+
+Consult **[DOC.md](DOC.md)** for detailed guides on:
+- **Repository Setup**: Creating your personal repository via GitHub Web, VS Code Source Control, or Git CLI.
+- **Template Updates**: How to pull and sync future template changes without conflicts.
+- **Configuration & Customization**: Modifying document metadata, cover pages, acronyms, and chapters.
+- **Formatting Guidelines**: Proportions for tables, algorithms, breakable code blocks, and appendices.
+
+---
+
+## Acknowledgments & Disclaimer
+
+This template is an unofficial fork and adaptation of the **Invicta Thesis Template** (`@preview/invicta-thesis` by João Lourenço) for the UPS community. It is not officially endorsed by the university.
+
+Always verify that your thesis meets current UPS requirements before submission. The UPS logo and branding remain the property of Universidade Politécnica de Santarém.
